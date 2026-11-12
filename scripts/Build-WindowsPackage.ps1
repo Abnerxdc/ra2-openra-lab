@@ -100,7 +100,8 @@ Get-ChildItem -LiteralPath $payload -Recurse -Directory | Sort-Object { $_.FullN
 }
 $lines | Set-Content -LiteralPath $owned -Encoding utf8BOM
 $output = Join-Path $build 'RA2Lab-0.1.0-preview-win-x64-setup.exe'
-& $nsis /V3 ("/DPAYLOAD_DIR=$payload") ("/DOUTPUT_FILE=$output") ("/DOWNED_FILES=$owned") (Join-Path $root 'packaging/windows/installer.nsi') *> (Join-Path $root 'reports/package-nsis-build.local.log')
+$nsisLog = Join-Path $build 'nsis-build.local.log'
+& $nsis /V3 ("/DPAYLOAD_DIR=$payload") ("/DOUTPUT_FILE=$output") ("/DOWNED_FILES=$owned") (Join-Path $root 'packaging/windows/installer.nsi') *> $nsisLog
 if ($LASTEXITCODE -ne 0) { throw 'NSIS package compilation failed.' }
 (Get-FileHash -LiteralPath $output -Algorithm SHA256).Hash | Set-Content -LiteralPath ($output + '.sha256') -Encoding ascii
 @{ Payload=$payload; Installer=$output; Scope='Preview build; installer and game not executed; acceptance pending' } |
