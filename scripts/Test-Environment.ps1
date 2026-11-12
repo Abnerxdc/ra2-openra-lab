@@ -17,4 +17,3 @@ if ($dotnet) {
     HasSdk = ($sdks.Count -gt 0)
     Note = 'Inventory only; no game process launched. SDK compatibility requires upstream inspection.'
 } | ConvertTo-Json -Depth 4
-

@@ -7,4 +7,3 @@
 - Use the engine revision required by OpenRA/ra2. Do not independently upgrade it.
 - Preserve upstream license and attribution when incorporating source. No project-wide license is chosen yet.
 - Record checks as passed only when actually executed. A resource hash is not evidence of authenticity or engine compatibility.
-

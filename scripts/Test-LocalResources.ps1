@@ -42,4 +42,3 @@ $report | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $outputPath -Encodi
 $entries | Format-Table Name, Exists, SizeBytes, RequiredForInitialInventory
 Write-Output "Local report: $outputPath"
 if ($missing.Count -gt 0) { throw 'Required base resource files are missing or empty.' }
-

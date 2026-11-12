@@ -11,7 +11,7 @@
 - GitHub 仓库已存在且公开：<https://github.com/Abnerxdc/ra2-openra-lab>。
 - 命令和文件操作恢复；沙箱内网络失败，沙箱外 GitHub 读取成功。
 - 本机没有 .NET SDK；须先按上游配套版本准备。
-- 尚未完成构建、规则检查、资源结构检查、无界面对局验证。
+- 配套引擎和模组 Release 编译及无界面 YAML 检查通过；四个 MIX 顶层索引范围检查通过。详见 [评估记录](docs/evaluation.md)。尚未导入资源或验证完整对局。
 
 ## 本机检查
 
