@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "status": "design-only-unbalanced",
+  "units": {"cost": "credits", "hp": "design HP", "speed": "cells/second", "range": "cells", "reload": "seconds", "damage": "per shot before armor"},
+  "armorMultipliers": {
+    "rifle": {"infantry": 1, "light": 0.4, "heavy": 0.1, "structure": 0.1},
+    "ap": {"infantry": 0.25, "light": 1, "heavy": 1, "structure": 0.5},
+    "he": {"infantry": 1, "light": 0.6, "heavy": 0.25, "structure": 1}
+  },
+  "roster": [
+    {"id":"dc_guard","name":"巡线员","faction":"dawn","role":"infantry","cost":120,"hp":120,"armor":"infantry","speed":1.4,"range":4,"damage":12,"reload":0.7,"weapon":"rifle"},
+    {"id":"dc_lancer","name":"穿甲手","faction":"dawn","role":"anti-armor","cost":300,"hp":100,"armor":"infantry","speed":1.1,"range":5,"damage":60,"reload":3,"weapon":"ap"},
+    {"id":"dc_scout","name":"燕隼侦察车","faction":"dawn","role":"scout","cost":500,"hp":320,"armor":"light","speed":3.2,"range":4,"damage":18,"reload":0.6,"weapon":"rifle"},
+    {"id":"dc_prism","name":"棱锋炮车","faction":"dawn","role":"mainline","cost":1000,"hp":700,"armor":"heavy","speed":2.3,"range":6,"damage":85,"reload":2.4,"weapon":"ap"},
+    {"id":"dc_arc","name":"弧光榴炮","faction":"dawn","role":"artillery","cost":1400,"hp":350,"armor":"light","speed":1.5,"range":10,"minimumRange":3,"damage":110,"reload":5,"weapon":"he","splashRadius":1.5},
+    {"id":"dc_mender","name":"织补维修车","faction":"dawn","role":"repair","cost":700,"hp":300,"armor":"light","speed":2.2,"repairPerSecond":15,"repairCostPerHP":0.5},
+    {"id":"cu_guard","name":"铆钉卫兵","faction":"cinder","role":"infantry","cost":140,"hp":160,"armor":"infantry","speed":1.2,"range":4,"damage":14,"reload":0.8,"weapon":"rifle"},
+    {"id":"cu_breaker","name":"破甲工兵","faction":"cinder","role":"anti-armor","cost":300,"hp":130,"armor":"infantry","speed":1,"range":4.5,"damage":70,"reload":3.5,"weapon":"ap"},
+    {"id":"cu_hound","name":"炉犬突击车","faction":"cinder","role":"scout","cost":600,"hp":400,"armor":"light","speed":2.7,"range":3.5,"damage":30,"reload":1,"weapon":"he","splashRadius":0.75},
+    {"id":"cu_anvil","name":"砧卫重坦","faction":"cinder","role":"mainline","cost":1100,"hp":1050,"armor":"heavy","speed":1.6,"range":5,"damage":100,"reload":3,"weapon":"ap"},
+    {"id":"cu_kiln","name":"窑火攻城炮","faction":"cinder","role":"artillery","cost":1500,"hp":500,"armor":"light","speed":1.2,"range":9,"minimumRange":3,"damage":150,"reload":6,"weapon":"he","splashRadius":1.75},
+    {"id":"cu_rivet","name":"铸钉维修车","faction":"cinder","role":"repair","cost":700,"hp":400,"armor":"light","speed":1.6,"repairPerSecond":15,"repairCostPerHP":0.5}
+  ],
+  "sharedEconomy": [
+    {"id":"sl_mcv","name":"基地车","cost":3000,"hp":1600,"armor":"heavy","speed":1.2,"role":"deploy-construction-yard"},
+    {"id":"sl_collector","name":"采集车","cost":1400,"hp":1000,"armor":"heavy","speed":1.7,"role":"harvester","armed":false}
+  ]
+}

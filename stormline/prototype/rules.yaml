@@ -1,0 +1,52 @@
+# Original prototype overlay. Inherits traits from the local OpenRA/ra2 baseline.
+# Static art only: no independent turret, player-color mask or directional animation yet.
+^SLPrototypeVehicle:
+	Inherits: ^Vehicle
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	-RenderVoxels:
+	-Voiced:
+	-Explodes:
+	-ChronoshiftableWithSpriteEffect:
+	BodyOrientation:
+		QuantizedFacings: 1
+	RenderSprites:
+	WithSpriteBody:
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+	AttackFrontal:
+	AutoTarget:
+	HitShape:
+	MapEditorData:
+		Categories: Stormline Prototype
+
+dc_prism:
+	Inherits: ^SLPrototypeVehicle
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Prism Cannon Vehicle (Prototype)
+	Health:
+		HP: 700
+	Mobile:
+		Speed: 94
+	Armament:
+		Weapon: SLPrismAP
+	RenderSprites:
+		Image: dc_prism
+
+cu_anvil:
+	Inherits: ^SLPrototypeVehicle
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: Anvil Heavy Tank (Prototype)
+	Health:
+		HP: 1050
+	Mobile:
+		Speed: 66
+	Armament:
+		Weapon: SLAnvilAP
+	RenderSprites:
+		Image: cu_anvil

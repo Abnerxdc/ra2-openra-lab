@@ -1,0 +1,29 @@
+# Silent, invisible ballistic projectile for logic prototyping.
+# No inherited RA2 sound or effect asset references.
+SLPrismAP:
+	ReloadDelay: 60
+	Range: 6c0
+	ValidTargets: Ground
+	Projectile: Bullet
+		Speed: 682
+	Warhead@damage: SpreadDamage
+		Spread: 1
+		Damage: 85
+		ValidTargets: Ground
+		Versus:
+			None: 25
+			Flak: 25
+			Plate: 25
+			Light: 100
+			Medium: 100
+			Heavy: 100
+			Wood: 50
+			Steel: 50
+			Concrete: 50
+
+SLAnvilAP:
+	Inherits: SLPrismAP
+	ReloadDelay: 75
+	Range: 5c0
+	Warhead@damage: SpreadDamage
+		Damage: 100

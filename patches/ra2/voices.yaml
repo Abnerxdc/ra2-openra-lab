@@ -1,0 +1,40 @@
+# Compatibility overlay for pinned OpenRA/ra2. Upstream authors and GPL-3.0-or-later
+# attribution are retained in the packaged RA2 license and credits.
+# Do not put control metadata inside the Voices sound-event dictionary.
+^InfantryDeath:
+	DisablePrefixes: Zapped, Burned, Melted, PsyCrush
+	Voices:
+		-DisablePrefixes:
+
+EngineerVoice:
+	Voices:
+		Select: sea, seb, sec
+		Action: ata, atb
+		Die: dia, dib, dic
+
+TeslaTrooperVoice:
+	Voices:
+		Select: itessea, itessec, itessed, itessee
+
+CrazyIvanVoice:
+	Voices:
+		Move: icramoa, icramob, icramoc, icramod, icramof
+		Attack: icraata, icraatb, icraatc, icraatd
+
+ChimpanzeeVoice:
+	Voices:
+		Attack: gchiatta, gchiattb, gchiattc
+
+# The supplied base audio has no corresponding clips for these optional cues.
+# An empty event is deliberately silent, not substituted with a different animal.
+# A comma parses as an explicit empty string array; a null YAML value retains inherited clips.
+AlligatorVoice:
+	Voices:
+		Select: ,
+		Move: ,
+		Feedback: ,
+		Die: ,
+
+KirovVoice:
+	Voices:
+		Feedback: ,

@@ -1,0 +1,13 @@
+dc_prism:
+	idle:
+		Filename: dc_prism.png
+		Length: 1
+		Facings: 1
+		Scale: 0.085
+
+cu_anvil:
+	idle:
+		Filename: cu_anvil.png
+		Length: 1
+		Facings: 1
+		Scale: 0.085
