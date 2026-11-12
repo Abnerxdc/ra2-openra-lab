@@ -1,0 +1,24 @@
+# Proprietary game assets stay local, including in private repositories.
+*.mix
+*.exe
+*.dll
+*.iso
+*.cab
+*.zip
+*.7z
+assets/local/
+local/
+reports/
+upstream/
+bin/
+obj/
+.vs/
+.idea/
+.env
+.env.*
+*.log
+*.user
+
+
+# Project-local SDK and tooling
+.tools/
