@@ -60,7 +60,20 @@ Copy-Item -LiteralPath (Join-Path $engine 'AUTHORS') -Destination (Join-Path $pa
 Copy-Item -LiteralPath (Join-Path $mod 'LICENSE') -Destination (Join-Path $payload 'licenses/RA2-LICENSE')
 Copy-Item -LiteralPath (Join-Path $mod 'mods/ra2/CREDITS') -Destination (Join-Path $payload 'licenses/RA2-CREDITS')
 Copy-Item -LiteralPath (Join-Path (Split-Path -Parent $nsis) 'COPYING') -Destination (Join-Path $payload 'licenses/NSIS-COPYING')
-Copy-Item -LiteralPath (Join-Path $root 'local/engine-source.zip') -Destination (Join-Path $payload 'sources/OpenRA-release-20231010.zip')
+$sourceArchive = [IO.Compression.ZipFile]::OpenRead((Join-Path $root 'local/engine-source.zip'))
+$filteredArchive = [IO.Compression.ZipFile]::Open((Join-Path $payload 'sources/OpenRA-release-20231010-source.zip'), [IO.Compression.ZipArchiveMode]::Create)
+try {
+    foreach ($entry in $sourceArchive.Entries) {
+        # Preserve corresponding engine code, build files, common and modcontent.
+        # Unused stock-game mod assets are not part of this RA2 runtime/source distribution.
+        if ($entry.FullName -match '/mods/(cnc|ra|d2k|ts)/' -or $entry.FullName -match '\.(mix|exe|dll|pdb)$' -or $entry.FullName.EndsWith('/')) { continue }
+        $copy = $filteredArchive.CreateEntry($entry.FullName, [IO.Compression.CompressionLevel]::Fastest)
+        $inputStream = $entry.Open(); $outputStream = $copy.Open()
+        try { $inputStream.CopyTo($outputStream) } finally { $outputStream.Dispose(); $inputStream.Dispose() }
+    }
+} finally { $filteredArchive.Dispose(); $sourceArchive.Dispose() }
+'Corresponding engine source is from the pinned official archive. Unused stock-game mod assets and binary/MIX entries were omitted; engine code and build files are unchanged.' |
+    Set-Content -LiteralPath (Join-Path $payload 'sources/SOURCE-NOTES.txt') -Encoding utf8
 Copy-Item -LiteralPath (Join-Path $root 'local/ra2-source.zip') -Destination (Join-Path $payload 'sources/RA2-61e24e3.zip')
 Copy-Item -LiteralPath (Join-Path $root 'packaging/windows/Bootstrap.cs') -Destination (Join-Path $payload 'sources/Bootstrap.cs')
 Copy-Item -LiteralPath (Join-Path $root 'packaging/windows/installer.nsi') -Destination (Join-Path $payload 'sources/installer.nsi')

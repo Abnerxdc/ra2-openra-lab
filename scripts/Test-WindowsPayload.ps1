@@ -9,6 +9,12 @@ $forbidden = Get-ChildItem -LiteralPath $payload -File -Recurse | Where-Object {
     $_.Extension -in @('.mix','.pdb','.log','.user') -or $_.Name -match '^(OpenRA\.Test|nunit|NUnit|testhost|Microsoft\.TestPlatform)'
 }
 if ($forbidden) { throw 'Disallowed development or original resource files in payload.' }
+Get-ChildItem -LiteralPath $payload -Recurse -File -Filter '*.zip' | ForEach-Object {
+    $zip = [IO.Compression.ZipFile]::OpenRead($_.FullName)
+    try {
+        if ($zip.Entries | Where-Object { $_.FullName -match '\.(mix|exe|dll|pdb)$' }) { throw 'Binary or MIX entries embedded in a source ZIP.' }
+    } finally { $zip.Dispose() }
+}
 $needles = @($root, [Environment]::GetFolderPath('UserProfile'))
 Get-ChildItem -LiteralPath $payload -File -Recurse | Where-Object { $_.Extension -in @('.exe','.dll','.json','.cs','.txt','.yaml') } | ForEach-Object {
     $bytes = [IO.File]::ReadAllBytes($_.FullName)
